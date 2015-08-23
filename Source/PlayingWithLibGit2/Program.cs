@@ -19,13 +19,16 @@ namespace PlayingWithLibGit2
             using (var repo = new Repository("../../Repo"))
             {
                 // create the file
-                const string content = @"Commit this!
-And do something else
-And, what the heck another line";
-                File.WriteAllText(Path.Combine(repo.Info.WorkingDirectory, "fileToCommit.txt"), content);
+                const string content = @"Some Header Information
+
+  var i = 0;
+  var j = 10;
+  var k = i + j;
+";
+                File.WriteAllText(Path.Combine(repo.Info.WorkingDirectory, "Q5020.txt"), content);
 
                 // stage the file
-                repo.Stage("fileToCommit.txt");
+                repo.Stage("Q5020.txt");
 
                 // Create the committer's signature and commit
                 var author = new Signature("Jose Jones", "josej@medamerica.com", DateTime.Now);
