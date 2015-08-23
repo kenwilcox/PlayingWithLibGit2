@@ -19,7 +19,9 @@ namespace PlayingWithLibGit2
             using (var repo = new Repository("../../Repo"))
             {
                 // create the file
-                const string content = "Commit this!\nAnd do something else";
+                const string content = @"Commit this!
+And do something else
+And, what the heck another line";
                 File.WriteAllText(Path.Combine(repo.Info.WorkingDirectory, "fileToCommit.txt"), content);
 
                 // stage the file
@@ -30,11 +32,17 @@ namespace PlayingWithLibGit2
                 var committer = author;
 
                 // Commit to the repo
-                var commit = repo.Commit("Here's a commit I made!", author, committer);
-                foreach (var parent in commit.Parents)
+                var commitMessage = string.Format("Revision: {0}", repo.Commits.Count() + 1);
+                try
                 {
-                    Console.WriteLine("Id: {0}, Sha: {1}", parent.Id, parent.Sha);
+                    var commit = repo.Commit(commitMessage, author, committer);
+                    foreach (var parent in commit.Parents)
+                    {
+                        Console.WriteLine("Id: {0}, Sha: {1}", parent.Id, parent.Sha);
+                    }
                 }
+                catch (EmptyCommitException) { } // I don't care if the user didn't change anything at this time
+
             }
         }
     }
