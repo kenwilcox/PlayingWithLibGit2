@@ -43,6 +43,14 @@ And, what the heck another line";
                 }
                 catch (EmptyCommitException) { } // I don't care if the user didn't change anything at this time
 
+                // Get the revisions in reverse order
+                // git log --topo-order --reverse
+                var filter = new CommitFilter { SortBy = CommitSortStrategies.Topological | CommitSortStrategies.Reverse };
+
+                foreach (var c in repo.Commits.QueryBy(filter))
+                {
+                    Console.WriteLine("{0} {1} - {2}", c.Sha.Substring(0, 7), c.Author.Name, c.MessageShort);
+                }
             }
         }
     }
