@@ -36,7 +36,7 @@ And, another
                 var committer = author;
 
                 // Commit to the repo
-                var commitMessage = string.Format("Revision: {0}", GetRevisionCount(repo, fileName));//repo.Commits.Count() + 1);                
+                var commitMessage = string.Format("Revision: {0}", GetRevisionCount(repo, fileName));
                 try
                 {
                     var commit = repo.Commit(commitMessage, author, committer);
@@ -58,7 +58,7 @@ And, another
             }
         }
 
-        private static int GetRevisionCount(Repository repo, string fileName)
+        private static int GetRevisionCount(IRepository repo, string fileName)
         {
             var modificationCommits = new List<Commit>();
             var currentSha = string.Empty;
