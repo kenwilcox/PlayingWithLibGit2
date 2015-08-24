@@ -24,6 +24,7 @@ namespace PlayingWithLibGit2
   var i = 0;
   var j = 10;
   var k = i + j;
+  // this line is a comment
 ";
                 File.WriteAllText(Path.Combine(repo.Info.WorkingDirectory, "Q5020.txt"), content);
 
