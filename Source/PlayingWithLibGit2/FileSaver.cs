@@ -73,7 +73,7 @@ namespace PlayingWithLibGit2
                 // git log --topo-order --reverse
                 var filter = new CommitFilter { SortBy = CommitSortStrategies.Topological | CommitSortStrategies.Reverse };
 
-                return repo.Commits.QueryBy(filter).Select(c => string.Format("{0} {1} - {2}", c.Sha.Substring(0, 7), c.Author.Name, c.MessageShort)).ToList();
+                return repo.Commits.QueryBy(filter).Select(c => string.Format("{0} {1}<{2}> - {3}", c.Sha.Substring(0, 7), c.Author.Name, c.Author.Email, c.MessageShort)).ToList();
             }
         } 
 
